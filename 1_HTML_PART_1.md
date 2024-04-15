@@ -1,5 +1,5 @@
 
-## HTML BASIC TYPOGRAPHY
+# HTML BASIC TYPOGRAPHY
 
 ### Body, head, and title
 ```html
@@ -75,7 +75,7 @@
 </html>
 ```
 
-## Lists
+# Lists
 ### Ordered Lists
 
 ```html
