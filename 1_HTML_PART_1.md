@@ -1,4 +1,5 @@
-# HTML PART 1 TUTORIAL
+
+<h1 style="text-align: center"># HTML PART 1 TUTORIAL</h1>
 
 ## HTML BASIC TYPOGRAPHY
 
