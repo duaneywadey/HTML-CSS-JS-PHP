@@ -1,6 +1,4 @@
 
-# HTML PART 1 TUTORIAL
-
 ## HTML BASIC TYPOGRAPHY
 
 ### Body, head, and title
