@@ -7,6 +7,7 @@
 	<head>
 		<title>Background Color</title>
 		<style type="text/css">
+		```css
 			body {
 				background-color: rgb(200,200,200);
 				color: white;
@@ -22,6 +23,7 @@
 				background-color: white;
 				color: rgb(100,100,90);
 				padding: inherit;}
+		```
 		</style>
 	</head>
 	<body>
@@ -230,8 +232,7 @@
 <html>
 	<head>
 		<title>Font Weight</title>
-		<style type="text/css">
-			.credits {
+		<style type="text/css">			.credits {
 				font-weight: bold;}
 		</style>
 	</head>
@@ -251,8 +252,7 @@
 <html>
 	<head>
 		<title>Letter and Word Spacing</title>
-		<style type="text/css">
-			h1, h2 {
+		<style type="text/css">			h1, h2 {
 				text-transform: uppercase;
 				letter-spacing: 0.2em;}
 			.credits {
@@ -302,8 +302,7 @@
 <html>
 	<head>
 		<title>Text Decoration</title>
-		<style type="text/css">
-			.credits {
+		<style type="text/css">			.credits {
 				text-decoration: underline;}
 			a {
 				text-decoration: none;}
