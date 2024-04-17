@@ -7,7 +7,6 @@
 	<head>
 		<title>Background Color</title>
 		<style type="text/css">
-		```css
 			body {
 				background-color: rgb(200,200,200);
 				color: white;
@@ -23,7 +22,6 @@
 				background-color: white;
 				color: rgb(100,100,90);
 				padding: inherit;}
-		```
 		</style>
 	</head>
 	<body>
