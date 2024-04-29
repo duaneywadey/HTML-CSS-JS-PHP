@@ -19,10 +19,11 @@ $price = 5;
   <body>
     <h1>The Candy Store</h1>
 
-    // Printing the variables.
+    // We display the value of the variables below.
+
     <h2>Welcome <?php echo $name; ?></h2>
     <p>The cost of your candy is 
-       $<?php echo $price; ?> per pack.</p>
+      <?php echo $price; ?> per pack.</p>
 
   </body>
 </html>
