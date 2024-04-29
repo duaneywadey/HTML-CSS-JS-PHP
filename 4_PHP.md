@@ -1,7 +1,7 @@
 # PART 1 (Variables, Arrays, Operators)
 
 ### PHP Variables
- - PHP code always starts with '<?php' and then ends with '?>'
+ - PHP code always starts with ```<?php``` and then ends with ```'?>'```
 ```php
 <?php 
 $name  = 'Ivy';
