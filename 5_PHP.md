@@ -45,7 +45,7 @@ The GET method is used to request data from a specified resource. The data passe
 
 Create an index.php file. 
 
-```php
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
