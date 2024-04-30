@@ -1,5 +1,5 @@
 # PART 1 (Variables, Arrays, Operators)
-Here's a markdown file consisting of the concepts you need to know about PHP. The following codes shown below comes from Jon Duckett's book PHP and MySQL. If you want to study in advance, here's the repository consisting all of the book's PHP codes.  
+Here's a markdown file consisting of the concepts you need to know about PHP. The following codes shown below comes from Jon Duckett's book PHP and MySQL. If you want to study in advance, here's the [link](https://github.com/duaneywadey/PHP-Resources) to the repository containing all of the book's PHP codes.  
 
 ### PHP Variables
 PHP code always starts with ```<?php``` and then ends with ```?>```. We display outputs using the ```echo``` statement.
