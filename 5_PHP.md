@@ -43,7 +43,7 @@ if(isset($_POST['submitName'])) {
 
 The GET method is used to request data from a specified resource. The data passed using the GET method is visible in the query parameters in the browser URL. 
 
-Create an index.php file. 
+Create an ```index.php``` file containing this PHP code. 
 
 ```html
 <!DOCTYPE html>
@@ -68,7 +68,7 @@ Create an index.php file.
 </html>
 ```
 
-And then, create the testGet.php file.
+And then, create the ```testGet.php``` file.
 
 ```php
 <?php  
