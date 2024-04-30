@@ -13,7 +13,7 @@ if(isset($_POST['submitName'])) {
 	$username = $_POST['username'];
 
 	// Display the username in an h2 heading 
-	echo "<h2>" . $username. "</h2>";  
+	echo "<h2>Welcome to PHP," . $username. "!</h2>";  
 }
 ?>
 
@@ -73,10 +73,60 @@ And then, create the ```testGet.php``` file.
 ```php
 <?php  
 if(isset($_GET['submitName'])) {
+
+	// String passed inside our GET variable comes from the name attribute of our input element 
+
 	$username = $_GET['username'];
 	echo "<h1> From a get request: " . $username . "</h1>";
 }
 ?>
 ```
+
+### Adding Two Numbers
+For this example, we'll add two numbers using GET method. Paste the code below on your ```index.php``` file. 
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+
+	 <!-- The form submits to the same page using GET method -->
+	<form action="testGet.php" method="GET">
+
+		<!-- Input field for the username. Take note of the value stored in the name attribute -->
+		<p><input type="text" placeholder="num 1 here" name="num1"></p>
+		<p><input type="text" placeholder="num 2 here" name="num2"></p>
+
+		<!-- Submit button -->
+		<p><input type="submit" value="Submit" name="getSum"></p>
+	</form>
+</body>
+</html>
+```
+
+```testGet.php```
+```php
+<?php  
+if(isset($_GET['getSum'])) {
+
+	// String passed inside our GET variable comes from the name attribute of our input element 
+	$num1 = $_GET['num1'];
+	$num2 = $_GET['num2'];
+
+	// Create a variable to store the sum.
+	$sum = $num1 + $num2;
+
+	// Print the result
+	echo "<h2>The answer is " . $sum . "</h2>";
+}
+?>
+```
+
+
 
 
