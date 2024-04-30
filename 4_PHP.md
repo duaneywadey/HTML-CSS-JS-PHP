@@ -500,6 +500,7 @@ $price   = 1.99;
 ```
 
 ### Ternary operator
+The code below tells us that if $stock is greater than zero, we display 'In stock', or else, display 'Sold out'.
 
 ```php
 <?php 
@@ -517,6 +518,215 @@ $message = ($stock > 0) ? 'In stock' : 'Sold out';
     <h1>The Candy Store</h1>
     <h2>Chocolate</h2>
     <p><?= $message ?></p>
+  </body>
+</html>
+```
+
+# Part 3 (Functions)
+
+### Basic Functions
+In this code we created two functions. We called both functions in our HTML template.
+```php
+<?php
+function write_logo()
+{
+    echo 'Writing a logo...';
+}
+
+function welcome_user()
+{
+  echo "Hello there! Welcome";
+}
+?>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Basic Functions</title>
+  </head>
+  <body>
+    <h1><?php write_logo()?> The Candy Store</h1>
+    <h2><?php welcome_user()?></h2>
+    <footer>
+      <?php write_logo() ?>
+    </footer>
+  </body>
+</html>
+```
+
+### Function with return statements
+
+```php
+<?php
+function create_logo()
+{
+    return 'Logo 1, now created';
+}
+
+function create_copyright_notice()
+{
+    $year    = date('Y');
+    $message = '&copy; ' . $year;
+    return $message;
+}
+?>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Functions with Return Values</title>
+    <link rel="stylesheet" href="css/styles.css">
+  </head>
+  <body>
+    <header>
+      <h1><?= create_logo() ?>The Candy Store</h1>
+    </header>
+    <article>
+      <h2>Welcome to The Candy Store</h2>
+    </article>
+    <footer>
+      <?= create_logo() ?>
+      <?= create_copyright_notice() ?>
+    </footer>
+  </body>
+</html>
+```
+
+### Multiple return arguments
+```php
+<?php
+$stock = 25;
+
+function get_stock_message($stock)
+{
+    if ($stock >= 10) {
+        return 'Good availability';
+    }
+    if ($stock > 0 && $stock < 10) {
+        return 'Low stock';
+    }
+    return 'Out of stock';
+}
+?>
+<!DOCTYPE html>
+<html> 
+  <head>
+    <title>Multiple Return Statements</title>
+    <link rel="stylesheet" href="css/styles.css">
+  </head>
+  <body>
+    <h1>The Candy Store</h1>
+    <h2>Chocolates</h2>
+    <p><?= get_stock_message($stock) ?></p>
+  </body>
+</html>
+```
+
+
+### Default values for function parameters
+```php
+<?php
+function calculate_cost($cost, $quantity, $discount = 0)
+{
+    $cost = $cost * $quantity;
+    return $cost - $discount;
+}
+?>
+<!DOCTYPE html>
+<html> 
+  <head>
+    <title>Default Values for Parameters</title>
+    <link rel="stylesheet" href="css/styles.css">
+  </head>
+  <body>
+    <h1>The Candy Store</h1>
+    <h2>Chocolates</h2>
+    <p>Dark chocolate $<?= calculate_cost(5, 10, 5) ?></p>
+    <p>Milk chocolate $<?= calculate_cost(3, 4) ?></p>
+    <p>White chocolate $<?= calculate_cost(4, 15, 20) ?></p>
+  </body>
+</html>
+```
+
+### Global and local scope in PHP
+
+```PHP
+<?php
+$tax = '20';
+
+function calculate_total($price, $quantity)
+{
+    $cost  = $price * $quantity;
+    $tax   = $cost  * (20 / 100);
+    $total = $cost  + $tax;
+    return $total;
+}
+?>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Global and Local Scope</title>
+    <link rel="stylesheet" href="css/styles.css">
+  </head>
+  <body>
+    <h1>The Candy Store</h1>
+    <p>Mints:  $<?= calculate_total(2, 5) ?></p>
+    <p>Toffee: $<?= calculate_total(3, 5) ?></p>
+    <p>Fudge:  $<?= calculate_total(5, 4) ?></p>
+    <p>Prices include tax at: <?= $tax ?>%</p>
+  </body>
+</html>
+```
+
+### Applying the concepts about functions
+
+```php
+<?php
+declare(strict_types = 1);
+$candy = [
+    'Toffee' => ['price' => 3, 'stock' => 12],
+    'Mints'  => ['price' => 2, 'stock' => 26],
+    'Fudge'  => ['price' => 4, 'stock' => 8],
+];
+
+$tax = 20;
+
+function get_reorder_message(int $stock): string
+{
+    return ($stock < 10) ? 'Yes' : 'No';
+}
+
+function get_total_value(float $price, int $quantity): float
+{
+    return $price * $quantity;
+}
+
+function get_tax_due(float $price, int $quantity, int $tax = 0): float
+{
+    return ($price * $quantity) * ($tax / 100);
+}
+?>
+<!DOCTYPE html>
+<html> 
+  <head>
+    <title>Functions Example</title>
+    <link rel="stylesheet" href="css/styles.css">
+  </head>
+  <body>
+    <h1>The Candy Store</h1>
+    <h2>Stock Control</h2>
+    <table>
+      <tr>
+        <th>Product</th><th>Stock</th><th>Re-order</th><th>Total value</th><th>Tax due</th>
+      </tr>
+      <?php foreach ($candy as $product_name => $data) { ?>
+        <tr>
+          <td><?=  $product_name ?></td>
+          <td><?=  $data['stock'] ?></td>
+          <td><?=  get_reorder_message($data['stock']) ?></td>
+          <td>$<?= get_total_value($data['price'], $data['stock']) ?></td>
+          <td>$<?= get_tax_due($data['price'], $data['stock'], $tax) ?></td>
+       </tr>
+      <?php } ?>
+    </table>
   </body>
 </html>
 ```
