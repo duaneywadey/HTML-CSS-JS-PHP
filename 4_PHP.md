@@ -1,4 +1,5 @@
 # PART 1 (Variables, Arrays, Operators)
+Here's a markdown file consisting of the concepts you need to know about PHP. The following codes shown below comes from Jon Duckett's book PHP and MySQL. If you want to study in advance, here's the repository consisting all of the book's PHP codes.  
 
 ### PHP Variables
 PHP code always starts with ```<?php``` and then ends with ```?>```. We display outputs using the ```echo``` statement.
@@ -672,6 +673,33 @@ function calculate_total($price, $quantity)
     <p>Toffee: $<?= calculate_total(3, 5) ?></p>
     <p>Fudge:  $<?= calculate_total(5, 4) ?></p>
     <p>Prices include tax at: <?= $tax ?>%</p>
+  </body>
+</html>
+```
+
+### Type declarations in PHP
+```PHP
+<?php
+$price    = 4;
+$quantity = 3;
+
+function calculate_total(int $price, int $quantity): int
+{
+    return $price * $quantity;
+}
+
+$total = calculate_total($price, $quantity);
+?>
+<!DOCTYPE html>
+<html> 
+  <head>
+    <title>Type Declarations</title>
+    <link rel="stylesheet" href="css/styles.css">
+  </head>
+  <body>
+    <h1>The Candy Store</h1>
+    <h2>Chocolates</h2>
+    <p>Total $<?= $total ?></p>
   </body>
 </html>
 ```
