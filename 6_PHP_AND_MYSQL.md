@@ -49,7 +49,7 @@ We first create our ```index.php``` file. The main purpose of ```session_start()
 </html>
 ```
 
-```handleForm.php```
+Let's create ```handleForm.php``` file
 
 ```php
 <?php 
@@ -76,7 +76,7 @@ if(isset($_POST['submitBtn'])) {
 ?>
 ```
 
-```unset.php```
+And then ```unset.php```. Please keep in mind that ```session_unset()``` is for deleting all the session variables.
 
 ```php
 <?php  
