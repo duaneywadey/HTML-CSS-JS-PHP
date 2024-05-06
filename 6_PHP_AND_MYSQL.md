@@ -92,6 +92,28 @@ Before we proceed with the PDO concepts, let's first <b>create a database in MyS
 
 <img src="Images/1_start and stop php mysql.png">
 
+Next, create a database by clicking new.
+
+<img src="Images/2_create_a_db_by_clicking_new.png">
+
+Let's give a name to our database
+
+<img src="Images/3_create_db_php_mysql.png">
+
+And let's create a table in our database with a name ```php_my_sql_db```. We're gonna call it ```tasks``` table.
+
+<img src="Images/4_create_tasks.png">
+
+Create the columns and make sure to give the right data types as stated and fill in the other attributes given as well. 
+
+<img src="Images/5_creating_the_tasks_table.png">
+
+
+
+
+
+
+
 
 
 
