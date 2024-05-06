@@ -88,7 +88,7 @@ header('Location: index.php'); // Go back to homepage
 
 ### How to create a database in phpmyadmin?
 
-Before we proceed with the PDO concepts, let's first create a database in MySQL. Make sure first that you already started MySQL in XAMPP.
+Before we proceed with the PDO concepts, let's first <b>create a database in MySQL</b>. Make sure first that you already started MySQL in XAMPP.
 
 <img src="Images/1_start and stop php mysql.png">
 
