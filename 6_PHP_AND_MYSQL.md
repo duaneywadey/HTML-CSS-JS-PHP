@@ -90,7 +90,7 @@ header('Location: index.php'); // Go back to homepage
 
 Before we proceed with the PDO concepts, let's first create a database in MySQL. Make sure first that you already started MySQL in XAMPP.
 
-![image]([IMAGES]\1_start and stop php mysql.png)
+![image]([IMAGES]/1_start and stop php mysql.png)
 
 
 
