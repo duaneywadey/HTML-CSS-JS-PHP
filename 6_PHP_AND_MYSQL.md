@@ -108,6 +108,97 @@ Create the columns and make sure to give the right data types as stated and fill
 
 <img src="Images/5_creating_the_tasks_table.png">
 
+### Creating a template
+
+Paste the following HTML template below in our ```index.php``` file. 
+
+```index.php```
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<h1>Welcome to our to do list</h1>
+	<form action="handleForm.php">
+		<p><input type="text" name="title"></p>
+		<p><input type="text" name="description"></p>
+		<p><input type="submit" value="Submit" name="submitBtn"></p>
+	</form>
+</body>
+</html>
+```
+
+### PDO - PHP Data Objects
+
+Now that we created a database and the tasks table, let's insert an entry on the ```tasks``` table, but first we have to create our ```dbConfig.php``` file to setup our connection to the MySQL database. PDO is used as a PHP interface to access MySql database. The ```conn``` variable is what we're gonna use to connect to the database. 
+
+Create our ```dbConfig.php``` file and paste this to the given file.
+
+```php
+<?php 
+
+$host = "localhost";
+$user = "root";
+$password = "";
+$dbname = "php_my_sql_db";
+$dsn = "mysql:host={$host};dbname={$dbname}";
+
+$conn = new PDO($dsn, $user, $password);
+$conn->exec("SET time_zone = '+08:00';");
+
+?>
+```
+
+We now create our ```functions.php``` table. We first need to create a function that can insert a record to the database. 
+
+```functions.php```
+
+```php
+function makeATask($conn, $title, $description) {
+	// Prepare the SQL query to insert data into the 'posts' table
+	$sql = "INSERT INTO tasks (title, description) VALUES(?,?)";
+	
+	// Prepare the statement using the connection object
+	$stmt = $conn->prepare($sql);
+	
+	// Execute the statement with the provided title and description as parameters
+	$stmt->execute([$title, $description]);
+}
+
+```
+
+Now we need to create the ```handleForms.php``` which will handle our form. Info inputted here will be inserted to the tasks table. The require_once statement is used to include PHP code from another file. If the file is not found, a fatal error is thrown, and the program stops. I
+
+```handleForms.php```
+
+```php
+<?php  
+require_once('dbConfig.php'); // Include the 'dbConfig.php' file
+
+require_once('functions.php'); // Include the 'functions.php' file
+
+if(isset($_POST['submitBtn'])) { // Check if the 'submitBtn' is set in the POST request
+
+	$title = $_POST['title']; // Assign the value of 'title' from the POST request to the $title variable
+	
+	$description = $_POST['title']; // Assign the value of 'title' from the POST request to the $description variable
+
+	makeATask($conn, $title, $description); // Call the 'makeATask' function with the $conn, $title, and $description variables
+}
+?>
+
+```
+
+
+
+
+
+
 
 
 
