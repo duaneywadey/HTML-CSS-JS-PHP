@@ -106,7 +106,7 @@ And let's create a table in our database with a name ```php_my_sql_db```. We're 
 
 Create the columns and make sure to give the right data types as stated and fill in the other attributes given as well. 
 
-<img src="Images/5_creating_the_tasks_table.png">
+<img src="Images/6_creating_the_tasks_table.png">
 
 ### Creating a template
 
@@ -145,7 +145,7 @@ Create our ```dbConfig.php``` file and paste this to the given file.
 $host = "localhost";
 $user = "root";
 $password = "";
-$dbname = "php_my_sql_db";
+$dbname = "php_mysql_db";
 $dsn = "mysql:host={$host};dbname={$dbname}";
 
 $conn = new PDO($dsn, $user, $password);
@@ -172,7 +172,7 @@ function makeATask($conn, $title, $description) {
 
 ```
 
-Now we need to create the ```handleForms.php``` which will handle our form. Info inputted here will be inserted to the tasks table. The require_once statement is used to include PHP code from another file. If the file is not found, a fatal error is thrown, and the program stops. I
+Now we need to create the ```handleForms.php``` which will handle our form. Info inputted here will be inserted to the tasks table. The require_once statement is used to include PHP code from another file. If the file is not found, a fatal error is thrown, and the program stops. 
 
 ```handleForms.php```
 
@@ -185,7 +185,7 @@ require_once('functions.php'); // Include the 'functions.php' file
 if(isset($_POST['submitBtn'])) { // Check if the 'submitBtn' is set in the POST request
 
 	$title = $_POST['title']; // Assign the value of 'title' from the POST request to the $title variable
-	
+
 	$description = $_POST['title']; // Assign the value of 'title' from the POST request to the $description variable
 
 	makeATask($conn, $title, $description); // Call the 'makeATask' function with the $conn, $title, and $description variables
