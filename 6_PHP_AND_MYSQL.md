@@ -297,9 +297,225 @@ if(isset($_POST['submitBtn'])) { // Check if the 'submitBtn' is set in the POST 
 ?>
 ```
 
+### How to create a login and registration page?
+
+Let's first create ```users``` table. 
+
+<img src="Images/7_create_users_table.png">
+
+```dbConfig.php```
+
+```php
+<?php 
+
+$host = "localhost";
+$user = "root";
+$password = "";
+$dbname = "test";
+$dsn = "mysql:host={$host};dbname={$dbname}";
+
+$conn = new PDO($dsn, $user, $password);
+$conn->exec("SET time_zone = '+08:00';");
+
+?>
+```
+```functions.php```
+
+```php
+<?php  
+function addUser($conn, $username, $password) {
+	$sql = "SELECT * FROM users WHERE username=?";
+	$stmt = $conn->prepare($sql);
+	$stmt->execute([$username]);
+
+	if($stmt->rowCount()==0) {
+		$sql = "INSERT INTO users (username,password) VALUES (?,?)";
+		$stmt = $conn->prepare($sql);
+		return $stmt->execute([$username, $password]);
+	}
+}
+
+function login($conn, $username, $password) {
+	$query = "SELECT * FROM users WHERE username=?";
+	$stmt = $conn->prepare($query);
+	$stmt->execute([$username]);
+
+	if($stmt->rowCount() == 1) {
+		// returns associative array
+		$row = $stmt->fetch();
+
+		// store user info as a session variable
+		$_SESSION['userInfo'] = $row;
+
+		// get values from the session variable
+		$uid = $row['user_id'];
+		$uname = $row['username'];
+		$passHash = $row['password'];
+
+		// validate password 
+		if(password_verify($password, $passHash)) {
+			$_SESSION['user_id'] = $uid;
+			$_SESSION['username'] = $uname;
+			$_SESSION['email'] = $email;
+			$_SESSION['userLoginStatus'] = 1;
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+}
+
+?>
+```
 
 
+```handleForm.php```
 
+```php
+<?php  
+session_start();
+require_once('dbConfig.php');
+require_once('functions.php');
+
+if (isset($_POST['regBtn'])) {
+	$username = $_POST['username'];
+	$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+	if(empty($username) || empty($password)) {
+		echo '<script> 
+		alert("The input field is empty!");
+		window.location.href = "register.php";
+		</script>';
+	}
+	
+	else {
+
+		if(addUser($conn, $username, $password)) {
+			header('Location: index.php');
+		}
+
+		else {
+			header('Location: register.php');
+		}
+
+	}
+}
+
+if (isset($_POST['loginBtn'])) {
+	$username = $_POST['username'];
+	$password = $_POST['password'];
+
+	if(empty($username) && empty($password)) {
+		echo "<script>
+		alert('Input fields are empty!');
+		window.location.href='index.php'
+		</script>";
+	} 
+	else {
+
+		if(login($conn, $username, $password)) {
+			header('Location: index.php');
+		}
+
+		else {
+			header('Location: login.php');
+		}
+	}
+	
+}
+?>
+```
+
+```register.php```
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<p>Register here</p>
+	<form action="handleForm.php" method="POST">
+		<div class="fields">
+			<p><input type="text" placeholder="username here" class="fields" name="username"></p>
+			<p><input type="password" placeholder="password here" class="fields" name="password"></p>
+			<p><input type="submit" value="Register" id="submitBtn" name="regBtn"></p>
+		</div>
+	</form>
+</body>
+</html>
+```
+
+```login.php```
+
+```html
+<?php 
+session_start();
+
+if(isset($_SESSION['welcomeMessage']) && !isset($_SESSION['username'])) {
+	echo $_SESSION['welcomeMessage'];
+}
+
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<p>Login here</p>
+	<form action="handleForm.php" method="POST">
+		<div class="fields">
+			<p><input type="text" placeholder="username here" class="fields" name="username"></p>
+			<p><input type="password" placeholder="password here" class="fields" name="password"></p>
+			<p><input type="submit" value="login" id="loginBtn" name="loginBtn"></p>
+		</div>
+	</form>
+	<a href="register.php">Register</a>
+</body>
+</html>
+```
+
+```index.php```
+
+```html
+<?php 
+session_start();
+
+if(!isset($_SESSION['username'])) {
+	header('Location: login.php');
+} 
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<h1>Welcome! <?php echo $_SESSION['username'];?></h1>
+	<a href="logout.php">Logout</a>
+</body>
+</html>
+```
+
+```logout.php```
+
+```php
+<?php  
+session_start();
+session_unset();
+header('Location: index.php');
+?>
+```
 
 
 
