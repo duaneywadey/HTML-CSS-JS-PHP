@@ -159,6 +159,7 @@ We now create our ```functions.php``` table. We first need to create a function 
 ```functions.php```
 
 ```php
+<?php
 function makeATask($conn, $title, $description) {
 	// Prepare the SQL query to insert data into the 'posts' table
 	$sql = "INSERT INTO tasks (title, description) VALUES(?,?)";
@@ -169,6 +170,7 @@ function makeATask($conn, $title, $description) {
 	// Execute the statement with the provided title and description as parameters
 	$stmt->execute([$title, $description]);
 }
+?>
 
 ```
 
@@ -208,6 +210,18 @@ For now, we should add a feature that can enable us to see the records from the 
 ```functions.php```
 
 ```php
+<?php
+function makeATask($conn, $title, $description) {
+	// Prepare the SQL query to insert data into the 'posts' table
+	$sql = "INSERT INTO tasks (title, description) VALUES(?,?)";
+	
+	// Prepare the statement using the connection object
+	$stmt = $conn->prepare($sql);
+	
+	// Execute the statement with the provided title and description as parameters
+	$stmt->execute([$title, $description]);
+}
+
 function getAllTasks($conn) {
 
 	// SQL query to select all tasks from the table
@@ -222,7 +236,7 @@ function getAllTasks($conn) {
 	// Return all the fetched rows as an array
 	return $stmt->fetchAll();
 }
-
+?>
 ```
 
 Modify the ```index.php```. We need to call the ```getAllTasks()``` function and we can show now each task stored into the database. 
