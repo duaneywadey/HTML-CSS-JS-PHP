@@ -188,7 +188,7 @@ if(isset($_POST['submitBtn'])) { // Check if the 'submitBtn' is set in the POST 
 
 	$title = $_POST['title']; // Assign the value of 'title' from the POST request to the $title variable
 
-	$description = $_POST['title']; // Assign the value of 'title' from the POST request to the $description variable
+	$description = $_POST['description']; // Assign the value of 'title' from the POST request to the $description variable
 
 	makeATask($conn, $title, $description); // Call the 'makeATask' function with the $conn, $title, and $description variables
 }
