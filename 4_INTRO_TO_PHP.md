@@ -1,6 +1,13 @@
 # PART 1 (Variables, Arrays, Operators)
 Here's a markdown file consisting of the concepts you need to know about PHP. The following codes shown below comes from Jon Duckett's book PHP and MySQL. If you want to study in advance, here's the [link](https://github.com/duaneywadey/PHP-Resources) to the repository containing all of the book's PHP codes.  
 
+
+### What is PHP?
+
+PHP is a programming language used for creating dynamic webpages. Code written in PHP can be used to handle forms and integrate with databases like MySQL. 
+
+
+
 ### PHP Variables
 PHP code always starts with ```<?php``` and then ends with ```?>```. We display outputs using the ```echo``` statement.
 ```php
